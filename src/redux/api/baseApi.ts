@@ -6,7 +6,9 @@ type UpdateBookArg = Partial<IBook> & { id: string };
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:4000/api` }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `https://library-management-server-one-eta.vercel.app/api`,
+  }),
   tagTypes: ["book"],
   endpoints: (build) => ({
     // get all books
@@ -53,6 +55,11 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["book"],
     }),
+    // borrow summary
+    getBorrowSummary: build.query({
+      query: () => `/borrow-summary`,
+      providesTags: ["book"],
+    }),
   }),
 });
 
@@ -63,4 +70,5 @@ export const {
   useDeleteBookMutation,
   useGetSingleBookQuery,
   useBorrowBookMutation,
+  useGetBorrowSummaryQuery,
 } = baseApi;

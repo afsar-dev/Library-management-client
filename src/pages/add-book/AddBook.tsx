@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 const AddBook = () => {
-  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "dbrceqag4";
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const [loading, setLoading] = useState(false);
   const [addBook] = useAddBookMutation();
   const navigate = useNavigate();

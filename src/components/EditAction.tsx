@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const EditAction: React.FC<IProps> = ({ book }) => {
-  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "dbrceqag4";
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const [updateBook] = useUpdateBookMutation();
 
   const [selectedImageName, setSelectedImageName] = useState<string | null>(

@@ -13,3 +13,13 @@ export interface IBook {
   copies: number;
   available: boolean;
 }
+
+export interface ISummary {
+  totalQuantity: number;
+  book: Book;
+}
+
+export interface Book {
+  title: string;
+  isbn: string;
+}
