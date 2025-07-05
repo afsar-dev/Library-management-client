@@ -7,7 +7,7 @@ type UpdateBookArg = Partial<IBook> & { id: string };
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://library-management-server-one-eta.vercel.app/api`,
+    baseUrl: `https://minimal-library-management-server.vercel.app/api`,
   }),
   tagTypes: ["book"],
   endpoints: (build) => ({
