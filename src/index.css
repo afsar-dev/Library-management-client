@@ -125,6 +125,13 @@
   @apply max-w-7xl mx-auto;
 }
 
+.active-link {
+  @apply bg-purple-500 shadow-[4px_4px_0_black] py-1 px-1.5 rounded text-white dark:text-black font-bold;
+}
+
+.inactive-link {
+  @apply text-purple-500 font-semibold;
+}
 
 select option:checked {
   background-color: #c27aff;

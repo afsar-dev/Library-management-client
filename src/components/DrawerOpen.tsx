@@ -1,6 +1,6 @@
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { IoIosMenu } from "react-icons/io";
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 
 const DrawerOpen = () => {
   const links = [
@@ -28,13 +28,17 @@ const DrawerOpen = () => {
           <h2 className="text-purple-300 text-lg font-bold">Menu</h2>
           {links.map((link) => {
             return (
-              <Link
+              <NavLink
                 key={link.path}
-                className={"text-xl hover:underline text-white cursor-pointer font-medium"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-xl hover:underline text-black cursor-pointer font-black"
+                    : "text-xl hover:underline text-white cursor-pointer font-medium"
+                }
                 to={link.path}
               >
                 {link.text}
-              </Link>
+              </NavLink>
             );
           })}
         </div>

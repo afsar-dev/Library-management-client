@@ -84,7 +84,7 @@ const BorrowAction = ({ book }: { book: IBook }) => {
                   name={data?.name}
                   type={data?.type}
                   placeholder={`Enter ${data?.label.toLowerCase()}`}
-                  className="border border-black shadow-[2px_2px_0_black] placeholder:text-purple-400 text-purple-400"
+                  className="border border-black shadow-[2px_2px_0_black] placeholder:text-purple-400 text-purple-500"
                 />
               </div>
             ))}
