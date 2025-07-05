@@ -13,8 +13,6 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import type { IBook } from "@/types/types";
-import { Checkbox } from "./ui/checkbox";
-import { cn } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { useUpdateBookMutation } from "@/redux/api/baseApi";
 import toast from "react-hot-toast";
@@ -41,9 +39,23 @@ const EditAction: React.FC<IProps> = ({ book }) => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    const available = formData.get("available") !== null;
+    const available = formData.get("available") === "Yes";
     const fileInput = form.image as HTMLInputElement;
     const image = fileInput.files?.[0];
+
+    const copies = Number(data.copies);
+
+    if (available && copies <= 0) {
+      return toast.error(
+        "To mark the book as available, the number of copies must be greater than 0."
+      );
+    }
+
+    if (!available && copies > 0) {
+      return toast.error(
+        "To mark the book as unavailable, the number of copies must be 0."
+      );
+    }
 
     let imageUrl = book.image;
     if (image) {
@@ -74,7 +86,7 @@ const EditAction: React.FC<IProps> = ({ book }) => {
     const updatedBookData = {
       ...data,
       available,
-      copies: Number(data.copies),
+      copies,
       image: imageUrl,
     };
 
@@ -85,13 +97,15 @@ const EditAction: React.FC<IProps> = ({ book }) => {
 
     if (result) {
       toast.success("Book updated successfully!");
-      form.reset();
       formRef.current?.reset();
       setPreviewUrl(book.image || null);
       setSelectedImageName(null);
       setIsModalOpen(false);
     }
   };
+
+  const selectClasses =
+    "w-full h-9 px-1.5 dark:bg-[#272930] rounded-md border border-black overflow-hidden shadow-[2px_2px_0_black] transition hover:shadow-[1px_1px_0_black] focus:ring-black focus:border-black cursor-pointer";
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -101,7 +115,7 @@ const EditAction: React.FC<IProps> = ({ book }) => {
         </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] border border-black shadow-[5px_5px_0_black]">
-        <form onSubmit={handleOnSubmit}>
+        <form ref={formRef} onSubmit={handleOnSubmit}>
           <DialogHeader className="sr-only">
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>
@@ -110,27 +124,34 @@ const EditAction: React.FC<IProps> = ({ book }) => {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-5">
-            {inputData.map(({ label, name, type }) => (
+            {inputFields.map(({ label, name, type }) => (
               <div key={name} className="space-y-2">
                 <Label htmlFor={name} className="text-purple-500 font-semibold">
                   {label}
                 </Label>
-                {name === "available" ? (
-                  <div className="flex items-center gap-2">
-                    <Checkbox
-                      id={name}
-                      name={name}
-                      defaultChecked={book.available}
-                    />
-                    <span
-                      className={cn("text-sm", {
-                        "text-red-500": !book.available,
-                        "text-green-500": book.available,
-                      })}
-                    >
-                      {book.available ? "Available" : "Unavailable"}
-                    </span>
-                  </div>
+                {name === "genre" ? (
+                  <select
+                    name="genre"
+                    className={selectClasses}
+                    defaultValue={book.genre}
+                  >
+                    <option disabled>Available</option>
+                    {genres.map((genre) => (
+                      <option key={genre} value={genre}>
+                        {genre}
+                      </option>
+                    ))}
+                  </select>
+                ) : name === "available" ? (
+                  <select
+                    name="available"
+                    className={selectClasses}
+                    defaultValue={book.available ? "Yes" : "No"}
+                  >
+                    <option disabled>Available</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
                 ) : type === "file" ? (
                   <div className="space-y-1">
                     <p className="text-sm text-gray-500 mt-1 line-clamp-1 truncate">
@@ -200,12 +221,21 @@ const EditAction: React.FC<IProps> = ({ book }) => {
 
 export default EditAction;
 
-const inputData = [
+const inputFields = [
   { label: "Image", name: "image", type: "file" },
   { label: "Title", name: "title", type: "text" },
   { label: "Author", name: "author", type: "text" },
-  { label: "Genre", name: "genre", type: "text" },
+  { label: "Genre", name: "genre", type: "select" },
   { label: "ISBN", name: "isbn", type: "text" },
   { label: "Copies", name: "copies", type: "number" },
-  { label: "Available", name: "available", type: "checkbox" },
+  { label: "Available", name: "available", type: "select" },
+];
+
+const genres = [
+  "FICTION",
+  "NON_FICTION",
+  "SCIENCE",
+  "HISTORY",
+  "BIOGRAPHY",
+  "FANTASY",
 ];

@@ -1,9 +1,9 @@
 import { useGetAllBooksQuery } from "@/redux/api/baseApi";
-import { RotatingLines } from "react-loader-spinner";
 import { Card } from "./ui/card";
 import type { IBook } from "@/types/types";
 import { FiSearch, FiCamera } from "react-icons/fi";
 import { useState } from "react";
+import Spinner from "./Spinner";
 
 const BooksList = () => {
   const { data, isLoading, error } = useGetAllBooksQuery();
@@ -46,14 +46,7 @@ const BooksList = () => {
       </div>
       {isLoading ? (
         <div className="flex justify-center py-24">
-          <RotatingLines
-            visible={true}
-            width="60"
-            strokeColor="#AD46FF"
-            strokeWidth="5"
-            animationDuration="0.75"
-            ariaLabel="rotating-lines-loading"
-          />
+          <Spinner />
         </div>
       ) : error ? (
         <p className="text-center text-red-500">Failed to load books.</p>

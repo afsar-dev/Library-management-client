@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
         <hr className="my-6 border-dashed border-purple-500 sm:mx-auto  lg:my-8" />
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400 font-bold">
-          © 2025 Libra™ . All Rights Reserved.
+          © 2025 Libra. All Rights Reserved.
         </span>
       </div>
     </footer>

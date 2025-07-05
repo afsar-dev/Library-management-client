@@ -3,6 +3,8 @@ import type React from "react";
 import EditAction from "../EditAction";
 import { cn } from "@/lib/utils";
 import { DeleteAction } from "../DeleteAction";
+import { Link } from "react-router";
+import BorrowAction from "../BorrowAction";
 
 interface IProps {
   book: IBook;
@@ -57,12 +59,13 @@ export const Card: React.FC<IProps> = ({ book }) => {
           </div>
           {/* details and borrow */}
           <div className="flex items-center gap-2">
-            <button className="flex justify-center w-full py-1 px-2 bg-green-500 text-white font-medium border border-black rounded shadow-[3px_3px_0_black] hover:shadow-[1px_1px_0_black] transition cursor-pointer">
-              Borrow
-            </button>
-            <button className="flex justify-center w-full py-1 px-2 bg-blue-700 text-white font-medium border border-black rounded shadow-[3px_3px_0_black] hover:shadow-[1px_1px_0_black] transition cursor-pointer">
+            <BorrowAction book={book} />
+            <Link
+              to={`/all-books/${book._id}`}
+              className="flex justify-center w-full py-1 px-2 bg-blue-700 text-white font-medium border border-black rounded shadow-[3px_3px_0_black] hover:shadow-[1px_1px_0_black] transition cursor-pointer"
+            >
               Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>
