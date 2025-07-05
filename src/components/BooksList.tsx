@@ -1,9 +1,10 @@
 import { useGetAllBooksQuery } from "@/redux/api/baseApi";
 import { Card } from "./ui/card";
 import type { IBook } from "@/types/types";
-import { FiSearch, FiCamera } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 import Spinner from "./Spinner";
+// import { MdOutlineKeyboardVoice } from "react-icons/md";
 
 const BooksList = () => {
   const { data, isLoading, error } = useGetAllBooksQuery();
@@ -31,9 +32,9 @@ const BooksList = () => {
             className="text-black dark:text-white placeholder-purple-400 px-2 py-2 outline-none w-full"
           />
 
-          <button type="button" className="p-3 text-purple-500 cursor-pointer">
-            <FiCamera size={20} />
-          </button>
+          {/* <button type="button" className="p-3 text-purple-500 cursor-pointer">
+            <MdOutlineKeyboardVoice size={20} />
+          </button> */}
         </div>
         <select
           id="default"
