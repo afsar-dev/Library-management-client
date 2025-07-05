@@ -7,7 +7,7 @@
 
 ---
 
-**`Frontend`:** [Link](https://minimal-library-management-client.vercel.app)  
+**`Live`:** [Link](https://minimal-library-management-client.vercel.app)  
 **`API Documentation`:** [https://github.com/afsar-dev/Library-management-server/blob/main/README.md](https://github.com/afsar-dev/Library-management-server/blob/main/README.md)  
 
 ## 🚀 Features

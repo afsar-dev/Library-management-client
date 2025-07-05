@@ -4,7 +4,7 @@ import type { IBook } from "@/types/types";
 import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 import Spinner from "./Spinner";
-// import { MdOutlineKeyboardVoice } from "react-icons/md";
+// import { xlOutlineKeyboardVoice } from "react-icons/xl";
 
 const BooksList = () => {
   const { data, isLoading, error } = useGetAllBooksQuery();
@@ -15,8 +15,8 @@ const BooksList = () => {
   return (
     <div className="space-y-12">
       {/* search and sort */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="max-w-80 h-12 flex items-center bg-white dark:bg-gray-900 rounded-md border border-black overflow-hidden  shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] ">
+      <div className="flex flex-col xl:flex-row items-center justify-between gap-6">
+        <div className="max-w-80 h-12 flex items-center bg-white dark:bg-gray-900 rounded-xl border border-black overflow-hidden  shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] ">
           <button
             type="submit"
             className="px-2 bg-purple-500 h-12 text-white cursor-pointer"
@@ -33,12 +33,12 @@ const BooksList = () => {
           />
 
           {/* <button type="button" className="p-3 text-purple-500 cursor-pointer">
-            <MdOutlineKeyboardVoice size={20} />
+            <xlOutlineKeyboardVoice size={20} />
           </button> */}
         </div>
         <select
           id="default"
-          className="max-w-80 h-12 px-1.5 flex items-center bg-white dark:bg-gray-900 rounded-md border border-black overflow-hidden shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] text-purple-500 focus:ring-black focus:border-black cursor-pointer"
+          className="max-w-80 h-12 px-1.5 flex items-center bg-white dark:bg-gray-900 rounded-xl border border-black overflow-hidden shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] text-purple-500 focus:ring-black focus:border-black cursor-pointer"
         >
           <option disabled>Sort by</option>
           <option value="Copies (Low to High)">Copies (Low to High)</option>
@@ -54,7 +54,7 @@ const BooksList = () => {
       ) : books.length === 0 ? (
         <p className="text-center text-purple-500">No books found.</p>
       ) : (
-        <div className="grid md:grid-cols-4 gap-10 px-6 md:px-0">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 px-6 xl:px-0">
           {books.map((book: IBook) => (
             <Card book={book} key={book._id} />
           ))}
