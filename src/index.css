@@ -126,7 +126,7 @@
 }
 
 .active-link {
-  @apply bg-purple-500 shadow-[4px_4px_0_black] py-1 px-1.5 rounded text-white dark:text-black font-bold;
+  @apply bg-purple-500 shadow-[4px_4px_0_black] hover:shadow-[0px_0px_0_black] py-1 px-1.5 rounded text-white dark:text-black font-bold;
 }
 
 .inactive-link {

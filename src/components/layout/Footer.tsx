@@ -30,7 +30,7 @@ const Footer = () => {
               return (
                 <Link
                   key={link.path}
-                  className={`hover:underline me-4 md:me-6`}
+                  className={`hover:underline me-4 md:me-6 font-semibold`}
                   to={link.path}
                 >
                   {link.text}

@@ -16,10 +16,10 @@ const BooksList = () => {
     <div className="space-y-12">
       {/* search and sort */}
       <div className="flex flex-col xl:flex-row items-center justify-between gap-6">
-        <div className="max-w-80 h-12 flex items-center bg-white dark:bg-gray-900 rounded-xl border border-black overflow-hidden  shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] ">
+        <div className="max-w-80 h-12 flex items-center bg-white dark:bg-gray-900 rounded-md border border-black overflow-hidden  shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] ">
           <button
             type="submit"
-            className="px-2 bg-purple-500 h-12 text-white cursor-pointer"
+            className="px-2 bg-purple-500 h-12 rounded-l text-white cursor-pointer"
           >
             <FiSearch size={20} />
           </button>
@@ -38,7 +38,7 @@ const BooksList = () => {
         </div>
         <select
           id="default"
-          className="max-w-80 h-12 px-1.5 flex items-center bg-white dark:bg-gray-900 rounded-xl border border-black overflow-hidden shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] text-purple-500 focus:ring-black focus:border-black cursor-pointer"
+          className="max-w-80 h-12 px-1.5 flex items-center bg-white dark:bg-gray-900 rounded-md border border-black overflow-hidden shadow-[4px_4px_0_black] transition hover:shadow-[1px_1px_0_black] text-purple-500 focus:ring-black focus:border-black cursor-pointer"
         >
           <option disabled>Sort by</option>
           <option value="Copies (Low to High)">Copies (Low to High)</option>
